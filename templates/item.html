@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form style="font-family: Times, serif;" method="post">
+    <h2>{{prod.name}}</h2>
+    <p>
+        {{prod.about}} <br>
+        <div class="form-group">
+            <img src={{prod.url}} class="card-img-top" alt="..." width="300" height="500"><br>
+<!--             <label for="photo">Приложите фотографию</label>-->
+<!--             <input type="file" class="form-control-file" id="photo" name="file">-->
+            <h4>Продавец:</h4>
+            <div> {{user.name}} </div>
+            <div> {{user.email}} </div>
+        </div>
+        {% if check == 1 %}
+            <button style="margin-top: 10px" class="btn btn-danger" type="submit">Удалить товар</button><br>
+        {% else %}
+            <button style="margin-top: 10px" class="btn btn-info" type="submit">Подать заявку о покупке</button><br>
+        {% endif %}
+
+        <h4>Комментарии:</h4>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Добавить комментарий</span>
+            </div>
+                <input type="text" class="form-control" name="com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <ul class="list-group">
+            {% for comm in prod.comment%}
+            <li class="list-group-item"> {{comm.user_}} : {{comm.text}} </li>
+            {%endfor%}
+        </ul>
+
+
+
+</form>
+
+{% endblock %}

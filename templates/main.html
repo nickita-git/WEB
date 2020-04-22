@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<body>
+<!--    {% if current_user.is_authenticated %}-->
+<form method="post">
+    <div style="font-size: 36px; font-family: Times, serif; color: red; position: relative; margin-left: 130px; ">
+
+
+        <a type="button" class="btn btn-success" href="/add">Добавить товар</a>
+        <input style="margin-left: 5px" class="btn btn-primary" type="search" name="look" value="Поиск товара">
+        <button type="submit" class="btn btn-primary">Искать</button>
+        <a type="button" class="btn btn-outline-info" name="main"  href="/products">Мои товары</a>
+
+</div>
+</form>
+
+<!--    {% endif %}-->
+</body>
+
+<form style="position: relative; margin-left: 50px; font-family: Times, serif; " action="" method="post">
+        <h1>{{title}}</h1>
+        {%for product in prod%}
+        {% if loop.index % 2 == 1%}
+            <div class="card-deck" style="width: 50rem;">
+        {%endif%}
+            <div class="card" >
+                <img src={{product.url}} class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">{{product.name}}</h3>
+                    <p class="card-text">{{product.about}}</p>
+                    {% set a = '/item/' + product.hash + '/0' %}
+                     <a href={{a}} class="btn btn-outline-secondary">Подробнее</a>
+                </div>
+            </div>
+         {% if loop.index % 2 == 0%}
+            </div>
+        {%endif%}
+
+    {%endfor%}
+</form>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+    <div style="margin-top: 50px; font-family: Times, serif;" class="list-group">
+        {%for product in prod%}
+        {% set a = '/item/' + product.hash  + '/1'%}
+        <h4><a class="list-group-item list-group-item-action" href={{a}}> {{product.name}}</a></h4>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
